@@ -20,28 +20,54 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoSelected: window.exampleVideoData[0]
+      videoSelected: window.exampleVideoData[0],
+      videos: window.exampleVideoData
     };
   }
 
   onVideoClick(video) {
-
-    // for (var i = 0; i < exampleVideoData.length; i++) {
-    //   if (exampleVideoData[i].snippet.title === videoClicked.value) {
-      
-    //   }
-    // }
     this.setState({
       videoSelected: video // data from each child element
     });
+  }
+  // componentDidMount() {
+  //   window.searchYouTube({
+  //     key: window.YOUTUBE_API_KEY,
+  //     q: query,
+  //     part: 'snippet',
+  //     max: 5,
+  //     type: 'video',
+  //     videoEmbeddable: 'true'
+  //   }, console.log);
+  // }
+  
+  updateVideos(videos) {
+    this.setState({
+      videos: videos,
+      videoSelected: videos[0]
+    });
+  }
+  
+  onSearchClick(query) {
+    console.log(query);
+    window.searchYouTube({
+      key: window.YOUTUBE_API_KEY,
+      q: query,
+      part: 'snippet',
+      max: 5,
+      type: 'video',
+      videoEmbeddable: 'true'
+    }, this.updateVideos.bind(this));
+    
+
   }
   
   render() {
     return (
     <div>
     <nav className="navbar">
-      <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+      <div id="search" className="col-md-6 offset-md-3">
+        <Search handleClick={this.onSearchClick.bind(this)} />
       </div>
     </nav>
     <div className="row">
@@ -49,7 +75,7 @@ class App extends React.Component {
         <VideoPlayer video={this.state.videoSelected}/>
       </div>
       <div id="videoList" className="col-md-5">
-        <VideoList handleClick={this.onVideoClick.bind(this)} videos={window.exampleVideoData}/>
+        <VideoList handleClick={this.onVideoClick.bind(this)} videos={this.state.videos}/>
       </div>
     </div>
   </div>);
