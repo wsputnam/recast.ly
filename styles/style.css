@@ -4,6 +4,20 @@ body {
   background: #f1f1f1;
 }
 
+li {
+  list-style: none;
+}
+
+#chat {
+  /*display: table-cell;*/
+  /*dth: 38%;*/
+  position: absolute;
+  border: 1px solid black;
+  margin-left: 1%;
+  overflow: scroll;
+  height: 300px;
+}
+
 .navbar {
   background: #fff;
   margin-bottom: 20px;
@@ -44,6 +58,7 @@ body {
 .video-player-details {
   background: #fff;
   padding: 8px;
+  position: absolute;
   border: 0;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
   margin-top: 10px;
@@ -55,6 +70,7 @@ body {
   border: 0;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
   margin-right: 20px;
+  overflow: scroll;
 }
 
 .video-list-entry {
