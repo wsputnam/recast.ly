@@ -2,7 +2,7 @@ var VideoList = (props) => (
   <div className="video-list">
     <ul>
       {
-        props.videos.map( (video) => (<VideoListEntry video={video} />) )
+        props.videos.map( (video) => (<VideoListEntry handleClick={props.handleClick} video={video} />) )
       }
     </ul>
   </div>
@@ -23,3 +23,5 @@ ReactDOM.render(
   <VideoList videos={window.exampleVideoData} />,
   document.getElementById('videoList')
 );
+
+
