@@ -1,6 +1,6 @@
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" />
+    <input onKeyPress={(e) => e.charCode === 13 ? props.handleEnter($('input').val()) : ''} className="form-control" type="text" />
     <button onClick={(e) => props.handleClick($('input').val())} className="btn hidden-sm-down">
       <span className="glyphicon glyphicon-search"></span>
     </button>

@@ -9,13 +9,15 @@ var searchYouTube = (options, callback) => {
     contentType: 'application/json',
     success: function(data) {
       console.log(data);
+      callback(data);
     },
-    error: function() {
-      console.log('get request failed');
+    error: function(data) {
+      console.log('get request failed', data);
     }
 
   });
 
 };
 
+var searchYouTube = _.debounce(searchYouTube, 500);
 window.searchYouTube = searchYouTube;
