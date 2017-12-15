@@ -11,16 +11,24 @@ li {
 #chat {
   /*display: table-cell;*/
   /*dth: 38%;*/
-  position: absolute;
+/*  position: relative;*/
+  width: 57.5%;
   border: 1px solid black;
-  margin-left: 1%;
+  margin-right: 3%;
+  margin-left: 1.5%;
   overflow: scroll;
   height: 300px;
+  margin-top: -100px;
 }
 
 .navbar {
   background: #fff;
   margin-bottom: 20px;
+}
+#submit {
+  position: relative;
+  margin-bottom: 120px;
+  margin-left: 30px;
 }
 
 .navbar img {
@@ -53,6 +61,9 @@ li {
 
 .video-player {
   margin-left: 20px;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 .video-player-details {
@@ -70,6 +81,7 @@ li {
   border: 0;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
   margin-right: 20px;
+  height: 75%;
   overflow: scroll;
 }
 

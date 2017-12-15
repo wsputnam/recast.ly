@@ -1,6 +1,7 @@
 var Chat = (props) => (
-  <div className="chat">
-    Messages here
+<div>
+<div className="chat">
     <Message />
   </div>
+</div>
 );

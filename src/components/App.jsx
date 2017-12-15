@@ -1,86 +1,17 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // componentDidMount() {
-    //   window.searchYouTube({
-    //     key: window.YOUTUBE_API_KEY,
-    //     q: 'cute cat video',
-    //     part: 'snippet',
-    //     max: 5,
-    //     type: 'video',
-    //     videoEmbeddable: 'true'
-    //   }, this.updateVideos.bind(this))
-    // }
+ 
     this.state = {
       videoSelected: window.exampleVideoData[0],
       videos: window.exampleVideoData,
-      messsages: this.getComments(this.renderMessages.bind(this))
+      messages: window.getComments(window.renderMessages)
     };
   }
   
-  getComments(callback) {
-    // var fetch = function (roomFilter) {
-    //   var data = {'order': '-createdAt'};
-    //   var dataByRoomName = {'order': '-createdAt', 'where': {'roomname': roomFilter}};
-    //   if (!roomFilter) {
-    //     dataByRoomName = data;
-    //   }
-    // }; 
-    
-
-    $.ajax({  
-      // This is the url you should use to communicate with the parse API server.
-      type: 'GET',
-      data: {'order': '-createdAt'},
-      url: 'http://parse.sfm6.hackreactor.com/chatterbox/classes/messages/',
-      contentType: 'application/json',
-      success: function (messages) {
-        callback(messages);
-        // app.renderRooms(app.roomNames);
-      },
-      error: function () {
-        console.error('Server not found');
-      }
-    });
-  }
-
-  renderMessages(messages) {
-    // var escapeHTML = function(unsafeMessage) {
-    //   return unsafeMessage
-    //     .replace(/</g, '&lt;')
-    //     .replace(/>/g, '&gt')
-    //     .replace(/&/g, '&amp;')
-    //     .replace(/"/g, '&quot;')
-    //     .replace(/'/g, '&#039;');
-    // };
-    console.log(messages);
-
-    var renderMessage = function(message) {
-      var $messageTemplate = $('<p class="message"><span class="username">' + message.username + '</span><span>: ' + message.text + '</span></p>');
-      $('#chat').append($messageTemplate);
-    };
-
-    for (var i = 0; i < messages.results.length; i++) {
-      var currentMessage = messages.results[i]; 
-      if (currentMessage.username === 'sp00ky%20ghost' || currentMessage.roomname === 'All') {
-        continue;
-      }
-      if (currentMessage.text) {
-        currentMessage.text = _.escape(currentMessage.text);  
-      }
-      if (currentMessage.username) {
-        currentMessage.username = _.escape(currentMessage.username);
-      }
-      // if (currentMessage.roomname) {
-      //   currentMessage.roomname = escapeHTML(currentMessage.roomname);
-      //   if (app.roomNames[currentMessage.roomname] === undefined) {
-      //     app.roomNames[currentMessage.roomname] = 1;
-      //   }
-      // }
-      renderMessage(messages.results[i]);
-    }
-  }
+ 
   
+
   // add an on video enter event handler
   onVideoClick(video) {
     this.setState({
@@ -118,6 +49,14 @@ class App extends React.Component {
     }, this.updateVideos.bind(this));
   }
 
+  onSubmit(query) {
+    console.log(query);
+    window.postComments(query);
+    this.setState({
+      messages: window.getComments(window.renderMessages)
+    });
+  }
+
   componentDidMount() {
     window.searchYouTube({
       key: window.YOUTUBE_API_KEY,
@@ -127,10 +66,6 @@ class App extends React.Component {
       type: 'video',
       videoEmbeddable: 'true'
     }, this.updateVideos.bind(this));
-    // this.setState({
-    //   videos: videos.items,
-    //   videoSelected: videos.items[0]
-    // });
   }
   
   render() {
@@ -141,22 +76,28 @@ class App extends React.Component {
         <Search handleEnter={this.onSearchEnter.bind(this)} handleClick={this.onSearchClick.bind(this)} />
       </div>
     </nav>
-    <div className="row">
-      <div id="videoPlayer" className="col-md-7">
+    <div id="videoPlayer" className="col-md-11">
         <VideoPlayer video={this.state.videoSelected}/>
       </div>
+    <div className="row">
       <div id="videoList" className="col-md-5">
         <VideoList handleClick={this.onVideoClick.bind(this)} videos={this.state.videos}/>
       </div>
     </div>
+    <div><input id="submit" type="text" autofocus></input><button onClick={(e) => this.onSubmit($('#submit').val())} id="submitButton">Submit Comment</button></div>
     <div id="chat" className="col-md-7">
-      <Chat />
-    </div>
+        <Chat />
+      </div>
   </div>);
   
   }
 }
 
+// do a post request from our input to send to server
+  // call renderMessages as our callback
+// fix Css formatting
+
+// rooms
 
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
