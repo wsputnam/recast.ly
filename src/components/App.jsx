@@ -8,9 +8,6 @@ class App extends React.Component {
       messages: window.getComments(window.renderMessages)
     };
   }
-  
- 
-  
 
   // add an on video enter event handler
   onVideoClick(video) {
@@ -31,7 +28,7 @@ class App extends React.Component {
       key: window.YOUTUBE_API_KEY,
       q: query,
       part: 'snippet',
-      max: 10,
+      maxResults: 10,
       type: 'video',
       videoEmbeddable: 'true'
     }, this.updateVideos.bind(this));
@@ -43,7 +40,7 @@ class App extends React.Component {
       key: window.YOUTUBE_API_KEY,
       q: query,
       part: 'snippet',
-      max: 10,
+      maxResults: 10,
       type: 'video',
       videoEmbeddable: 'true'
     }, this.updateVideos.bind(this));
@@ -62,7 +59,7 @@ class App extends React.Component {
       key: window.YOUTUBE_API_KEY,
       q: 'cute cat video',
       part: 'snippet',
-      max: 10,
+      maxResults: 10,
       type: 'video',
       videoEmbeddable: 'true'
     }, this.updateVideos.bind(this));
@@ -70,26 +67,26 @@ class App extends React.Component {
   
   render() {
     return (
-    <div>
-    <nav className="navbar">
-      <div id="search" className="col-md-6 offset-md-3">
-        <Search handleEnter={this.onSearchEnter.bind(this)} handleClick={this.onSearchClick.bind(this)} />
+      <div>
+      <nav className="navbar">
+        <div id="search" className="col-md-6 offset-md-3">
+          <Search handleEnter={this.onSearchEnter.bind(this)} handleClick={this.onSearchClick.bind(this)} />
+        </div>
+      </nav>
+      <div className="row">
+        <div id="videoPlayer" className="col-md-7">
+          <VideoPlayer video={this.state.videoSelected}/>
+        </div>
+        <div id="videoList" className="col-md-5">
+            <VideoList handleClick={this.onVideoClick.bind(this)} videos={this.state.videos}/>
+            <input id="submit" type="text"></input>
+            <button onClick={(e) => this.onSubmit($('#submit').val())} id="submitButton">Submit Comment</button>
+        </div>
       </div>
-    </nav>
-    <div id="videoPlayer" className="col-md-11">
-        <VideoPlayer video={this.state.videoSelected}/>
+        <div id="chat">
+        </div>
       </div>
-    <div className="row">
-      <div id="videoList" className="col-md-5">
-        <VideoList handleClick={this.onVideoClick.bind(this)} videos={this.state.videos}/>
-      </div>
-    </div>
-    <div><input id="submit" type="text" autofocus></input><button onClick={(e) => this.onSubmit($('#submit').val())} id="submitButton">Submit Comment</button></div>
-    <div id="chat" className="col-md-7">
-        <Chat />
-      </div>
-  </div>);
-  
+    );
   }
 }
 

@@ -12,24 +12,31 @@ li {
   /*display: table-cell;*/
   /*dth: 38%;*/
 /*  position: relative;*/
-  width: 57.5%;
+  /*width: 57.5%;*/
   border: 1px solid black;
-  margin-right: 3%;
-  margin-left: 1.5%;
-  overflow: scroll;
-  height: 300px;
-  margin-top: -100px;
+  margin-right: 5%;
+  margin-top: 45%;
+  margin-left: 2%;
+  padding: 1%;
+  width: 55.5%;
+/*  margin-left: 1.5%;
+  overflow: scroll;*/
+  /*float: left;*/
+  /*height: 300px;*/
+/*  margin-top: -100px;*/
 }
+#submit {
+  margin-top: 10%;
+ 
+  z-index: 2;
+
+} 
 
 .navbar {
   background: #fff;
   margin-bottom: 20px;
 }
-#submit {
-  position: relative;
-  margin-bottom: 120px;
-  margin-left: 30px;
-}
+
 
 .navbar img {
   height: 40px;
@@ -60,16 +67,20 @@ li {
 }
 
 .video-player {
-  margin-left: 20px;
-  width: 100%;
+  margin-left: 3%;
+/*  width: 100%;*/
   display: block;
-  margin: 0 auto;
+  /*position: relative;*/
+}
+
+.row {
+  position: absolute;
 }
 
 .video-player-details {
   background: #fff;
   padding: 8px;
-  position: absolute;
+  /*position: absolute;*/
   border: 0;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
   margin-top: 10px;
@@ -80,9 +91,12 @@ li {
   padding: 8px;
   border: 0;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
-  margin-right: 20px;
-  height: 75%;
+  margin-right: 10%;
+/*  margin-right: 20px;*/
+  /*height: 400px;*/
   overflow: scroll;
+/*  position: absolute;*/
+  /*float:right;*/
 }
 
 .video-list-entry {
